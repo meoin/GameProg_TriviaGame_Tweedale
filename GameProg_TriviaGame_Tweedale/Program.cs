@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace GameProg_TriviaGame_Tweedale
 {
@@ -92,31 +93,43 @@ namespace GameProg_TriviaGame_Tweedale
             new TriviaQuestion("test question15?", "true answer", "false1", "false2", "false3")
         };
 
+        static string name;
+
         static void Main(string[] args)
         {
-            string name = EnterName();
+            name = EnterName();
+
+            GameLoop();
+        }
+
+        static void GameLoop() 
+        {
+            Console.Clear();
+
             int totalQuestions = 10;
             int score = 0;
             TriviaQuestion[] questions = GenerateQuestionList(totalQuestions);
 
-            for (int q = 0; q < totalQuestions; q++) 
+            for (int q = 0; q < totalQuestions; q++)
             {
-                DisplayHUD(name, totalQuestions, score);
+                DisplayHUD(totalQuestions, score);
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write($"Question {q+1}. ");
+                Console.Write($"Question {q + 1}. ");
 
                 bool correctlyAnswered = AskQuestion(questions[q]);
 
-                if (correctlyAnswered) 
+                if (correctlyAnswered)
                 {
                     score++;
                 }
 
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
                 Console.Clear();
             }
+
+            Results(score, totalQuestions);
         }
 
         static int GetPercentage(int numerator, int denominator)
@@ -126,7 +139,90 @@ namespace GameProg_TriviaGame_Tweedale
 
         static void Results(int score, int totalQuestions) 
         {
+            Console.Clear();
 
+            DisplayHUD(totalQuestions, score);
+
+            int percent = GetPercentage(score, totalQuestions);
+
+            Console.ForegroundColor = ConsoleColor.White;
+
+            if (percent == 100)
+            {
+                Console.Write("Wow! Good job! You got ");
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("100%");
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("!!! You know your stuff!");
+            }
+            else if (percent >= 70)
+            {
+                Console.Write("Okay, okay. You got ");
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"{percent}%");
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("! Not bad, but you can do better than that!");
+            }
+            else if (percent >= 40)
+            {
+                Console.Write("Well, you got some right. ");
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"{percent}%");
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(" in fact! You should study a bit more.");
+                Console.WriteLine("Come to my drop-in sessions more often and ask for help!");
+            }
+            else if (percent > 0)
+            {
+                Console.Write("Look, you only got ");
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write($"{percent}%");
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("... Are you doing okay? Do you need help?");
+                Console.WriteLine("Come to my drop-in sessions more often and ask for help!");
+            }
+            else 
+            {
+                Console.Write("Buddy... You got ");
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("NOTHING");
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("??!? You gotta be trolling...");
+            }
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\nDo you want to try again? \nQuestions are randomized and you'll likely see new ones!\n");
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("Y = Yes | N = No");
+
+            bool readingInput = true;
+            ConsoleKey input = ConsoleKey.Z;
+
+            while (readingInput) 
+            {
+                input = Console.ReadKey(true).Key;
+
+                if (input == ConsoleKey.N || input == ConsoleKey.Y) 
+                {
+                    readingInput = false;
+                }
+            }
+
+            if (input == ConsoleKey.Y) 
+            {
+                GameLoop();
+            }
+            
         }
 
         static TriviaQuestion[] GenerateQuestionList(int count) 
@@ -154,16 +250,16 @@ namespace GameProg_TriviaGame_Tweedale
             return questionList;
         }
 
-        static void DisplayHUD(string name, int totalQuestions, int score) 
+        static void DisplayHUD(int totalQuestions, int score) 
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write($"{name}");
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("   |   ");
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write($"{GetPercentage(score, totalQuestions)}%");
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("   |   ");
 
             Console.ForegroundColor = ConsoleColor.Green;
@@ -172,7 +268,7 @@ namespace GameProg_TriviaGame_Tweedale
                 Console.Write("▒");
             }
 
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             for (int i = 0; i < totalQuestions - score; i++)
             {
                 Console.Write("▒");
@@ -251,12 +347,11 @@ namespace GameProg_TriviaGame_Tweedale
                 else 
                 {
                     validEntry = true;
-                    Console.Clear();
                     return name;
                 }
             }
 
-            Console.Clear();
+            
             return "John Trivia";
         }
     }
