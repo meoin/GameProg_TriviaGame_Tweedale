@@ -76,21 +76,50 @@ namespace GameProg_TriviaGame_Tweedale
     {
         static TriviaQuestion[] triviaQuestions =
         {
-            new TriviaQuestion("test question1?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question2", "true answer2", "not me", "not me either", "not me either either"),
-            new TriviaQuestion("test question3?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question4?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question5?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question6?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question7?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question8?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question9?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question10?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question11?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question12?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question13?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question14?", "true answer", "false1", "false2", "false3"),
-            new TriviaQuestion("test question15?", "true answer", "false1", "false2", "false3")
+            new TriviaQuestion("Which of these data types DOESN'T inherently represent a number?", "bool", "int", "double", "float"),
+            new TriviaQuestion("What do you call a method that calls itself?", "Recursive", "Repeating", "Self-Calling", "Skibidi"),
+            new TriviaQuestion("In a 2D array called 'map', how would you access the top left value?", "map[0,0]", "map(0,0)", "map[1][1]", "map[1,1]"),
+            new TriviaQuestion("What is the difference between '=' and '==' in programming?", 
+                "'=' sets the left value to the right value, '==' checks if two values are the same", 
+                "'=' checks if two values are the same, '==' sets the left value to the right value", 
+                "They do the same thing", 
+                "I honestly don't remember"),
+            new TriviaQuestion("What does putting a $ before a string do?", 
+                "Let's you put a variable directly in the string", 
+                "Tells the user that this string represents money", 
+                "Sets the string to static", 
+                "Converts the string to uppercase"),
+            new TriviaQuestion("How do you format a 'for loop' to loop 10 times in C#?", 
+                "for(int i=0; i<10; i++)", 
+                "foreach(i<10)", 
+                "for(i = 0; i>11; i++)", 
+                "for int i = 10; i < 10"),
+            new TriviaQuestion("In a list called 'names', how do you get the 10th item?", "names[9]", "names[10]", "names[11]", "names.Find(10)"),
+            new TriviaQuestion("How do you write a comment in C#?", "// This is a comment", "# This is a comment", "-- This is a comment", "/ This is a comment"),
+            new TriviaQuestion("How do you say 'AND' in an if statement?", "&&", "||", "and", "++"),
+            new TriviaQuestion("How do you print a string to the console?", "Console.Write()", "Console.Print()", "WriteLine()", "Console.Output()"),
+            new TriviaQuestion("What does the error 'System.IndexOutOfRangeException' tell you?", 
+                "I'm trying to access a position in an array that's greater than it's size", 
+                "I'm trying to use a decimal number on an integer", 
+                "I'm setting an invalid range in the Random.Range() method", 
+                "This isn't a real error message. You're trying to trick me and I won't fall for it."),
+            new TriviaQuestion("What is the difference between the data types 'int' and 'bigint' in C#?", 
+                "bigint isn't a real data type in C#", 
+                "bigint has a larger max limit than int", 
+                "bigint uses 8 bytes while int uses 4", 
+                "None of the other answers are true"),
+            new TriviaQuestion("Which word is used to return a value inside a method?", "return", "send", "continue", "output"),
+            new TriviaQuestion("If I'm just comparing one variable, instead of a bunch of 'if' statements, I can use a ____ statement.", 
+                "switch", "when", "default", "break"),
+            new TriviaQuestion("Which statement is used to stop a loop?", "break", "exit", "continue", "stop"),
+            new TriviaQuestion("What data type is used to store text?", "string", "str", "text", "char"),
+            new TriviaQuestion("How do you declare an int array named 'myArray'?", "int[] myArray", "int array myArray", "int myArray[]", "array int myArray"),
+            new TriviaQuestion("What is the name of the 'special' class that represents a group of constants?", "enum", "const", "special", "group"),
+            new TriviaQuestion("What operator is used to get the remainder of one number divided by another? (AKA modulo)", "%", "/", "#", "$"),
+            new TriviaQuestion("My function 'MyFloat' outputs a float, but I want to store it as an int! How do I cast it as an int?", 
+                "(int)MyFloat()", "MyFloat().Cast(int)", "MyFloat(int)", "MyFloat().ToInt()"),
+            new TriviaQuestion("How do you get the console input of a single key press?", 
+                "Console.ReadKey()", "Console.ReadLine()", "Console.Key()", "Console.ReadSingleKey()"),
         };
 
         static string name;
@@ -293,7 +322,7 @@ namespace GameProg_TriviaGame_Tweedale
                 Console.WriteLine(question.ShuffledAnswers[a]);
             }
 
-            char input = Console.ReadKey(true).KeyChar;
+            char input = GetAnswerInput();
             int inputInt = (int)Char.GetNumericValue(input) - 1;
 
             Console.WriteLine();
@@ -308,9 +337,48 @@ namespace GameProg_TriviaGame_Tweedale
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("No you doof!!!");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("The correct answer is: ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(question.Answer);
             }
 
             return correctlyAnswered;
+        }
+
+        static char GetAnswerInput() 
+        {
+            char[] validInputs = { '1', '2', '3', '4' };
+            bool readingInput = true;
+            bool sixEntered = false;
+            bool sixSevenEntered = false;
+            char input = '9';
+
+            while (readingInput) 
+            {
+                input = Console.ReadKey(true).KeyChar;
+
+                if (validInputs.Contains(input))
+                {
+                    readingInput = false;
+                }
+                else if (input == '6')
+                {
+                    sixEntered = true;
+                }
+                else if (!sixSevenEntered && sixEntered && input == '7')
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("\nSIX SEVEN!!!!!!!");
+                    sixSevenEntered = true;
+                }
+                else 
+                {
+                    sixEntered = false;
+                }
+            }
+
+            return input;
         }
 
         static string EnterName() 
