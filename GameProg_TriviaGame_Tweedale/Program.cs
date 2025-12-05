@@ -76,9 +76,12 @@ namespace GameProg_TriviaGame_Tweedale
     {
         static TriviaQuestion[] triviaQuestions =
         {
-            new TriviaQuestion("Which of these data types DOESN'T inherently represent a number?", "bool", "int", "double", "float"),
-            new TriviaQuestion("What do you call a method that calls itself?", "Recursive", "Repeating", "Self-Calling", "Skibidi"),
-            new TriviaQuestion("In a 2D array called 'map', how would you access the top left value?", "map[0,0]", "map(0,0)", "map[1][1]", "map[1,1]"),
+            new TriviaQuestion("Which of these data types DOESN'T inherently represent a number?",
+                "bool", "int", "double", "float"),
+            new TriviaQuestion("What do you call a method that calls itself?",
+                "Recursive", "Repeating", "Self-Calling", "Skibidi"),
+            new TriviaQuestion("In a 2D array called 'map', how would you access the top left value?",
+                "map[0,0]", "map(0,0)", "map[1][1]", "map[1,1]"),
             new TriviaQuestion("What is the difference between '=' and '==' in programming?", 
                 "'=' sets the left value to the right value, '==' checks if two values are the same", 
                 "'=' checks if two values are the same, '==' sets the left value to the right value", 
@@ -94,10 +97,14 @@ namespace GameProg_TriviaGame_Tweedale
                 "foreach(i<10)", 
                 "for(i = 0; i>11; i++)", 
                 "for int i = 10; i < 10"),
-            new TriviaQuestion("In a list called 'names', how do you get the 10th item?", "names[9]", "names[10]", "names[11]", "names.Find(10)"),
-            new TriviaQuestion("How do you write a comment in C#?", "// This is a comment", "# This is a comment", "-- This is a comment", "/ This is a comment"),
-            new TriviaQuestion("How do you say 'AND' in an if statement?", "&&", "||", "and", "++"),
-            new TriviaQuestion("How do you print a string to the console?", "Console.Write()", "Console.Print()", "WriteLine()", "Console.Output()"),
+            new TriviaQuestion("In a list called 'names', how do you get the 10th item?",
+                "names[9]", "names[10]", "names[11]", "names.Find(10)"),
+            new TriviaQuestion("How do you write a comment in C#?",
+                "// This is a comment", "# This is a comment", "-- This is a comment", "/ This is a comment"),
+            new TriviaQuestion("How do you say 'AND' in an if statement?",
+                "&&", "||", "and", "++"),
+            new TriviaQuestion("How do you print a string to the console?",
+                "Console.Write()", "Console.Print()", "WriteLine()", "Console.Output()"),
             new TriviaQuestion("What does the error 'System.IndexOutOfRangeException' tell you?", 
                 "I'm trying to access a position in an array that's greater than it's size", 
                 "I'm trying to use a decimal number on an integer", 
@@ -108,40 +115,66 @@ namespace GameProg_TriviaGame_Tweedale
                 "bigint has a larger max limit than int", 
                 "bigint uses 8 bytes while int uses 4", 
                 "None of the other answers are true"),
-            new TriviaQuestion("Which word is used to return a value inside a method?", "return", "send", "continue", "output"),
+            new TriviaQuestion("Which word is used to return a value inside a method?",
+                "return", "send", "continue", "output"),
             new TriviaQuestion("If I'm just comparing one variable, instead of a bunch of 'if' statements, I can use a ____ statement.", 
                 "switch", "when", "default", "break"),
-            new TriviaQuestion("Which statement is used to stop a loop?", "break", "exit", "continue", "stop"),
-            new TriviaQuestion("What data type is used to store text?", "string", "str", "text", "char"),
-            new TriviaQuestion("How do you declare an int array named 'myArray'?", "int[] myArray", "int array myArray", "int myArray[]", "array int myArray"),
-            new TriviaQuestion("What is the name of the 'special' class that represents a group of constants?", "enum", "const", "special", "group"),
-            new TriviaQuestion("What operator is used to get the remainder of one number divided by another? (AKA modulo)", "%", "/", "#", "$"),
+            new TriviaQuestion("Which statement is used to stop a loop?", "break",
+                "exit", "continue", "stop"),
+            new TriviaQuestion("What data type is used to store text?", "string",
+                "str", "text", "char"),
+            new TriviaQuestion("How do you declare an int array named 'myArray'?",
+                "int[] myArray", "int array myArray", "int myArray[]", "array int myArray"),
+            new TriviaQuestion("What is the name of the 'special' class that represents a group of constants?",
+                "enum", "const", "special", "group"),
+            new TriviaQuestion("What operator is used to get the remainder of one number divided by another? (AKA modulo)",
+                "%", "/", "#", "$"),
             new TriviaQuestion("My function 'MyFloat' outputs a float, but I want to store it as an int! How do I cast it as an int?", 
-                "(int)MyFloat()", "MyFloat().Cast(int)", "MyFloat(int)", "MyFloat().ToInt()"),
+                "(int) MyFloat()", "MyFloat().Cast(int)", "MyFloat(int)", "MyFloat().ToInt()"),
             new TriviaQuestion("How do you get the console input of a single key press?", 
                 "Console.ReadKey()", "Console.ReadLine()", "Console.Key()", "Console.ReadSingleKey()"),
+            new TriviaQuestion("Who is your favourite instructor?",
+                "Simon", "Not Simon", "Anybody but Simon", "I don't have a favourite"),
+            new TriviaQuestion("If a for loop could loop four, how much four would a for loop for?",
+                "3", "4", "1", "2"),
+            new TriviaQuestion("Using the following for loop through an array called 'names', how would you access each name?\n\nfor (int i = 0; i < names.Length; i++)",
+                "names[i]", "names[name]", "names[0]", "i"),
+            new TriviaQuestion("What operator is used to say 'NOT' when used before a boolean?",
+                "!", "X", "~", "-"),
+            new TriviaQuestion("What character do you put at the end of most statements in C#?",
+                ";", ".", ",", ":"),
+            new TriviaQuestion("What function is used to get the lower of two numbers?",
+                "Math.Min()", "Math.Max()", "Math.Lower()", "Math.IWouldLikeTheLowestNumberOfTheseTwoPleaseIfYouDon'tMindThankYou()"),
+            new TriviaQuestion("You have an array of strings called 'strings' and you want to get the 3rd char in the 2nd string.\nHow would you do that?",
+                "strings[1][2]", "strings[1, 2]", "strings[2, 1]", "strings[2, 3]"),
+            new TriviaQuestion("Using a path saved a string named 'path', how would you read a file to get a string array?", 
+                "File.ReadAllLines(path)", "path.Read()", "File.Read(path)", "ReadFile(path)"),
+            new TriviaQuestion("How do you set the console cursor to be on the 4th row, all the way to the left?",
+                "Console.SetCursorPosition(0, 3)", "Console.SetCursorPosition(3, 0)", "SetCursorPosition(3, 0)", "Console.SetCursor(3, 0)")
         };
 
         static string name;
+        static int startingQuestions = 10;
+        static int nameMaxLength = 24;
 
         static void Main(string[] args)
         {
             name = EnterName();
 
-            GameLoop();
+            GameLoop(startingQuestions);
         }
 
-        static void GameLoop() 
+        static void GameLoop(int totalQuestions) 
         {
             Console.Clear();
+            Console.CursorVisible = false;
 
-            int totalQuestions = 10;
             int score = 0;
             TriviaQuestion[] questions = GenerateQuestionList(totalQuestions);
 
             for (int q = 0; q < totalQuestions; q++)
             {
-                DisplayHUD(totalQuestions, score);
+                DisplayHUD(q+1, totalQuestions, score);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write($"Question {q + 1}. ");
 
@@ -170,7 +203,7 @@ namespace GameProg_TriviaGame_Tweedale
         {
             Console.Clear();
 
-            DisplayHUD(totalQuestions, score);
+            DisplayHUD(totalQuestions, totalQuestions, score);
 
             int percent = GetPercentage(score, totalQuestions);
 
@@ -249,7 +282,43 @@ namespace GameProg_TriviaGame_Tweedale
 
             if (input == ConsoleKey.Y) 
             {
-                GameLoop();
+                int questions = startingQuestions;
+                bool loopForInput = true;
+
+                Console.WriteLine();
+
+                while (loopForInput)
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("How many questions do you want to answer?");
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine($"Enter a number between 1 and {triviaQuestions.Length}");
+
+                    Console.CursorVisible = true;
+
+                
+                    if (int.TryParse(Console.ReadLine(), out questions))
+                    {
+                        if (questions > 0 && questions <= triviaQuestions.Length)
+                        {
+                            loopForInput = false;
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"I said between 1 and {triviaQuestions.Length}!");
+                        }
+                    }
+                    else 
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("A number!! Enter a number!!!");
+                    }
+                }
+
+                GameLoop(questions);
             }
             
         }
@@ -279,7 +348,7 @@ namespace GameProg_TriviaGame_Tweedale
             return questionList;
         }
 
-        static void DisplayHUD(int totalQuestions, int score) 
+        static void DisplayHUD(int currentQuestion, int totalQuestions, int score) 
         {
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write($"{name}");
@@ -287,20 +356,24 @@ namespace GameProg_TriviaGame_Tweedale
             Console.Write("   |   ");
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write($"{GetPercentage(score, totalQuestions)}%");
+            Console.Write($"Q {currentQuestion} / {totalQuestions}");
+
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("   |   ");
 
             Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"{GetPercentage(score, totalQuestions)}%   ");
+
+            Console.ForegroundColor = ConsoleColor.Green;
             for (int i = 0; i < score; i++) 
             {
-                Console.Write("▒");
+                Console.Write("▒▒");
             }
 
             Console.ForegroundColor = ConsoleColor.DarkGray;
             for (int i = 0; i < totalQuestions - score; i++)
             {
-                Console.Write("▒");
+                Console.Write("▒▒");
             }
 
             Console.WriteLine("\n");
@@ -394,11 +467,11 @@ namespace GameProg_TriviaGame_Tweedale
             {
                 name = Console.ReadLine();
 
-                if (name.Length > 12)
+                if (name.Length > nameMaxLength)
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Too long!!! Gimme a name that's 12 characters or less!");
+                    Console.WriteLine($"Too long!!! Gimme a name that's {nameMaxLength} characters or less!");
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write("Enter your name: ");
                     Console.ForegroundColor = ConsoleColor.White;
